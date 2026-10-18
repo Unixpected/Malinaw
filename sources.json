@@ -1,0 +1,58 @@
+[
+  {
+    "name": "PhilGEPS",
+    "site": "philgeps.gov.ph",
+    "offers": "Awards for procurement above ₱50,000",
+    "status": "Not loaded",
+    "checks": "Repeat winners and split awards. I could not find a verified data file to load, so nothing from PhilGEPS is shown."
+  },
+  {
+    "name": "DPWH Transparency Portal",
+    "site": "transparency.dpwh.gov.ph",
+    "offers": "About 247,000 infrastructure projects with budget, status, progress, contractor, location and citizen reports",
+    "status": "Loaded (older snapshot)",
+    "checks": "Citizen reports, status vs progress, repeated descriptions, contractor concentration, missing locations. The amount-paid field is empty in this data."
+  },
+  {
+    "name": "Full Disclosure Policy Portal",
+    "site": "fdpp.dilg.gov.ph",
+    "offers": "LGU budgets, Annual Investment Plans, procurement plans, 20% development fund",
+    "status": "Not automated yet",
+    "checks": "Compare the Annual Investment Plan with actual spending and check use of the 20% fund. Many files are scans and need text extraction first."
+  },
+  {
+    "name": "COA annual audit reports",
+    "site": "coa.gov.ph",
+    "offers": "Audit reports for national agencies, provinces, cities and municipalities",
+    "status": "Not automated yet",
+    "checks": "Unliquidated cash advances, adverse or disclaimer opinions, unrecorded property and equipment. The reports are long PDFs."
+  },
+  {
+    "name": "BLGF local fiscal data",
+    "site": "blgf.gov.ph",
+    "offers": "LGU income, national tax allocation, debt and financial statements",
+    "status": "Not automated yet",
+    "checks": "Large gaps between claimed local revenue and reported budgets."
+  },
+  {
+    "name": "eFOI portal",
+    "site": "foi.gov.ph",
+    "offers": "Request tickets for contracts, budgets and accomplishment reports",
+    "status": "Manual",
+    "checks": "Ask for the procurement plan, contracts and accomplishment report behind any flag."
+  },
+  {
+    "name": "SEC company records",
+    "site": "sec.gov.ph",
+    "offers": "General Information Sheets of winning suppliers",
+    "status": "Manual",
+    "checks": "Newly registered firms, and ownership links between suppliers and officials."
+  },
+  {
+    "name": "Barangay pages and treasurer reports",
+    "site": "Facebook pages, city or municipal treasury sites",
+    "offers": "Posted projects, relief distribution and costs",
+    "status": "Manual",
+    "checks": "Compare posted costs with the Annual Investment Plan, and look for projects credited to local funds that a national agency paid for."
+  }
+]

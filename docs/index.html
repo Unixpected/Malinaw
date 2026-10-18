@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Infrastructure Watch PH</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=Public+Sans:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef2f4;--surface:#fff;--ink:#14232b;--muted:#5a6b74;--line:#cfd9de;--accent:#0f6b6b;--flag:#a85f00;--flagbg:#fff1d9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1a20;--surface:#17262e;--ink:#e6eef1;--muted:#9bb0ba;--line:#2b404a;--accent:#4fc3c3;--flag:#f0b35a;--flagbg:#3a2c12}}
+:root[data-theme="dark"]{--bg:#0f1a20;--surface:#17262e;--ink:#e6eef1;--muted:#9bb0ba;--line:#2b404a;--accent:#4fc3c3;--flag:#f0b35a;--flagbg:#3a2c12}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.55 "Public Sans",system-ui,sans-serif}
+main{max-width:980px;margin:0 auto;padding:28px 18px 56px}
+h1{font:800 clamp(2rem,6vw,3.4rem)/1.05 "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 10px;letter-spacing:-.02em}
+h2{font:600 1.2rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 10px}
+.lede{max-width:66ch;color:var(--muted);margin:0 0 14px}
+.note{background:var(--flagbg);color:var(--flag);border-left:4px solid var(--flag);padding:10px 14px;margin:0 0 18px;font-size:.92rem}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;margin-bottom:18px}
+.tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px;border-bottom:2px solid var(--line)}
+.tabs button{font:600 .95rem "Public Sans",sans-serif;color:var(--muted);background:none;border:0;border-bottom:3px solid transparent;margin-bottom:-2px;padding:10px 12px;cursor:pointer}
+.tabs button[aria-selected=true]{color:var(--ink);border-bottom-color:var(--accent)}
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{font:600 .88rem "Public Sans",sans-serif;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:999px;padding:6px 12px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--flagbg);color:var(--flag);border-color:var(--flag)}
+.bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px}
+input[type=search],select{font:inherit;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:8px 10px;min-width:0;flex:1 1 180px}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.stats{display:flex;gap:26px;flex-wrap:wrap;margin-bottom:18px}
+.stats b{display:block;font:800 2rem "Bricolage Grotesque",sans-serif;line-height:1}
+.stats span{color:var(--muted);font-size:.88rem}
+.scroll{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:.92rem;min-width:640px}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-weight:600;color:var(--muted)}
+.tag{display:inline-block;background:var(--flagbg);color:var(--flag);border-radius:4px;padding:1px 7px;margin:0 4px 4px 0;font-size:.8rem;font-weight:600}
+.ok{color:var(--muted)}
+.brow{padding:12px 0;border-bottom:1px solid var(--line)}
+.brow .top{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.92rem}
+.lvl{display:inline-block;border-radius:4px;padding:1px 8px;font-size:.8rem;font-weight:600;white-space:nowrap}
+.lvl.hi{background:#b3261e;color:#fff}.lvl.me{background:var(--flagbg);color:var(--flag);border:1px solid var(--flag)}.lvl.lo{background:var(--bg);color:var(--muted);border:1px solid var(--line)}
+code{background:var(--bg);padding:1px 5px;border-radius:4px;font-size:.88em}
+.about p,.about li{max-width:70ch}
+footer{color:var(--muted);font-size:.86rem;max-width:70ch}
+</style>
+</head>
+<body>
+<main>
+<h1>Infrastructure Watch PH</h1>
+<p class="lede" id="stamp">Loading…</p>
+<p class="note" id="nd" hidden></p>
+
+<nav class="tabs" role="tablist" aria-label="Views">
+<button role="tab" id="tbO" aria-selected="true">Where to look first</button>
+<button role="tab" id="tbP" aria-selected="false">Projects</button>
+<button role="tab" id="tbS" aria-selected="false">Data gaps and sources</button>
+<button role="tab" id="tbA" aria-selected="false">How it works</button>
+</nav>
+
+<div id="tabO">
+<section class="panel"><h2>Where to look first</h2>
+<p id="ovHead" style="margin:0 0 8px"></p>
+<p class="ok" style="margin:0">Offices are ranked by how many warning patterns appear in their official project records, weighted by project budget. A high ranking is a reason to look closer. It does not mean anyone did anything wrong.</p></section>
+<div class="panel"><h2>DPWH offices</h2><div id="ovA"></div></div>
+</div>
+
+<div id="tabP" hidden>
+<section class="panel"><h2>Flagged projects</h2>
+<div class="chips" id="chips"></div>
+<p class="ok" id="cv" style="margin:10px 0 0"></p>
+<div class="bar"><input type="search" id="q" placeholder="Search description, office or contract ID" aria-label="Search"><select id="pc" aria-label="Category"></select></div></section>
+<div class="stats" aria-live="polite"><div><b id="pN">0</b><span>projects shown</span></div><div><b id="pV">₱0M</b><span>budget shown</span></div></div>
+<div class="panel" id="gRows"></div>
+</div>
+
+<div id="tabS" hidden>
+<section class="panel"><h2>What this data does not contain</h2><ul class="about" id="gaps"></ul></section>
+<div class="panel scroll"><h2>Sources and what to check</h2>
+<table><thead><tr><th>Source</th><th>What it offers</th><th>Status here</th><th>What to look for</th></tr></thead><tbody id="srcRows"></tbody></table></div>
+</div>
+
+<div id="tabA" class="about" hidden>
+<section class="panel"><h2>How this works</h2>
+<ol>
+<li>The data is the DPWH Transparency Portal's project list, collected by csiiiv in the <code>dpwh-transparency-data-api-scraper</code> repository. The portal's own source is transparency.dpwh.gov.ph.</li>
+<li>Each rule uses only fields that exist in that data. The rules, their weights and their thresholds are listed below and live in <code>rules.json</code>, so anyone can change them.</li>
+<li>A project's score adds the weights of the rules it trips. An office is ranked by the budget-weighted average of its projects' scores. High and Medium for offices mean the top 5% and next 15% of ranked offices, so they are relative. For single projects, High is a score of 50 or more and Medium is 25 or more.</li>
+</ol>
+<div class="scroll"><table><thead><tr><th>Rule</th><th>Formula</th><th>Weight</th><th>Projects</th></tr></thead><tbody id="ruleRows"></tbody></table></div>
+<p class="ok">A flag is a prompt to review the record, not a finding of wrongdoing. Check every flag on the official portal before sharing it.</p>
+</section>
+</div>
+
+<footer>Read-only monitor built from public records. Contractor names are not shown. Each project lists its contract ID so you can check the official record.</footer>
+</main>
+<script>
+var SNAP=null,DATA=null,ACT=null,RV={};
+function esc(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function money(n){return n>=1000?"₱"+(n/1000).toFixed(2)+"B":"₱"+Number(n).toFixed(1)+"M"}
+function N(n){return Number(n).toLocaleString()}
+function load(){return fetch("data.json",{cache:"no-store"}).then(function(r){if(!r.ok)throw 0;return r.json()}).catch(function(){return SNAP})}
+function lvlOf(s,k){var L=DATA.levels;return s>=L[k+"_high"]?"hi":s>=L[k+"_medium"]?"me":"lo"}
+var LT={hi:"High review priority",me:"Medium review priority",lo:"Low review priority"};
+function badge(s,k){var l=lvlOf(s,k);return "<span class='lvl "+l+"'>"+LT[l]+"</span>"}
+function tag(x,c){return "<span class='tag' title='"+esc(RV[x])+"'>"+esc(x)+(c!=null?" ("+N(c)+")":"")+"</span>"}
+function start(d){
+  if(!d){stamp.textContent="No data loaded yet.";return}
+  DATA=d;var t=d.totals;
+  stamp.textContent=N(t.projects)+" DPWH projects checked, worth "+"₱"+N(t.budget_bn)+" billion in recorded budgets. "+N(t.flagged)+" show at least one warning pattern. Page built "+d.updated+".";
+  nd.hidden=false;nd.textContent="The project data comes from an archived copy of the portal list. The archive does not state when it was collected, so newer projects and status changes on the live portal are not reflected here.";
+  d.rules.forEach(function(r){RV[r.name]=r.verify});
+  var A=d.offices,hi=A.filter(function(e){return lvlOf(e.score,"entity")=="hi"}).length;
+  ovHead.textContent=hi+" of the "+A.length+" offices listed rank high for review. The highest are first.";
+  ovA.innerHTML=A.map(function(e){return "<div class='brow'><div class='top'><b>"+esc(e.name)+"</b><span>"+badge(e.score,"entity")+" score "+e.score+"</span></div><div class='top ok' style='margin-top:4px'><span>"+N(e.flagged)+" of "+N(e.n)+" projects flagged · "+money(e.flagged_value_m)+" of "+money(e.value_m)+"</span></div><div style='margin-top:6px'>"+e.reasons.map(function(r){return tag(r[0],r[1])}).join("")+"</div></div>"}).join("");
+  chips.innerHTML=d.rules.map(function(r,i){return "<button type='button' class='chip' data-i='"+i+"' aria-pressed='false'>"+esc(r.name)+" ("+N(r.count)+")</button>"}).join("");
+  chips.onclick=function(e){var b=e.target.closest(".chip");if(!b)return;var n=d.rules[b.getAttribute("data-i")].name;ACT=ACT==n?null:n;cv.textContent=ACT?"How to check: "+RV[ACT]:"";
+    [].forEach.call(chips.children,function(x){x.setAttribute("aria-pressed",d.rules[x.getAttribute("data-i")].name==ACT)});proj()};
+  var cats={};d.projects.forEach(function(p){cats[p.category]=1});
+  pc.innerHTML="<option value=''>All categories</option>"+Object.keys(cats).sort().map(function(k){return "<option>"+esc(k)+"</option>"}).join("");
+  var g=d.gaps;
+  gaps.innerHTML=[
+   "<b>Amount paid is empty.</b> It is zero for all "+N(t.projects)+" projects, so payments cannot be compared with progress.",
+   "<b>No completion date</b> for "+N(g.no_completion_date)+" projects, so overdue projects cannot be found.",
+   "<b>No recorded budget</b> for "+N(g.budget_missing)+" projects.",
+   "<b>No coordinates</b> for "+N(g.no_coords)+" projects.",
+   "<b>"+N(g.repeated_ids)+" repeated contract IDs</b> were counted once.",
+   "<b>Progress below zero</b> for "+N(g.negative_progress)+" projects. These count as unfinished.",
+   "<b>Not covered:</b> procurement awards, bidder counts, company records, audit reports and LGU budgets. No verified data file was available for them."
+  ].map(function(x){return "<li>"+x+"</li>"}).join("");
+  srcRows.innerHTML=d.sources.map(function(s){return "<tr><td><b>"+esc(s.name)+"</b><br><span class='ok'>"+esc(s.site)+"</span></td><td>"+esc(s.offers)+"</td><td><span class='tag'>"+esc(s.status)+"</span></td><td>"+esc(s.checks)+"</td></tr>"}).join("");
+  ruleRows.innerHTML=d.rules.map(function(r){return "<tr><td>"+esc(r.name)+"</td><td><code>"+esc(r.expr)+"</code></td><td>"+r.weight+"</td><td>"+N(r.count)+"</td></tr>"}).join("");
+  proj();
+}
+function proj(){
+  var t=q.value.toLowerCase(),L=DATA.projects.filter(function(p){return (!pc.value||p.category==pc.value)&&(!ACT||p.flags.indexOf(ACT)>=0)&&(p.desc+p.office+p.id).toLowerCase().indexOf(t)>=0}),v=0;
+  L.forEach(function(p){v+=p.budget_m});
+  pN.textContent=N(L.length);pV.textContent=money(v);
+  gRows.innerHTML=L.slice(0,100).map(function(g){return "<div class='brow'><div class='top'><b>"+esc(g.desc)+"</b><span>"+badge(g.score,"item")+" "+money(g.budget_m)+"</span></div>"+
+    "<div class='top ok' style='margin-top:4px'><span>"+esc(g.office)+" · "+esc(g.region)+" · "+esc(g.category)+" · "+esc(g.status)+" · progress "+(g.progress==null?"unknown":Math.round(g.progress)+"%")+(g.year?" · "+g.year:"")+(g.reports?" · "+g.reports+" citizen reports":"")+" · "+esc(g.id)+"</span></div>"+
+    "<div style='margin-top:6px'>"+g.flags.map(function(x){return tag(x)}).join("")+"</div></div>"}).join("")||"<p class='ok'>No projects match.</p>";
+}
+q.addEventListener("input",function(){if(DATA)proj()});pc.addEventListener("change",function(){if(DATA)proj()});
+var TABS=[["tbO","tabO"],["tbP","tabP"],["tbS","tabS"],["tbA","tabA"]];
+TABS.forEach(function(t){document.getElementById(t[0]).addEventListener("click",function(){TABS.forEach(function(u){document.getElementById(u[0]).setAttribute("aria-selected",u[0]==t[0]);document.getElementById(u[1]).hidden=u[0]!=t[0]})})});
+load().then(start);
+</script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+[
+  {"name": "Citizens reported this project", "expr": "report_count >= 1", "weight": 30,
+   "verify": "Open the project on transparency.dpwh.gov.ph and read the citizen reports and photos."},
+  {"name": "Marked completed, progress below 100%", "expr": "status == 'Completed' and progress < 100", "weight": 25,
+   "verify": "Compare the status and progress on the portal with the project's documents and photos."},
+  {"name": "Reported 100% done but still listed as on-going", "expr": "status == 'On-Going' and progress >= 100", "weight": 10,
+   "verify": "Usually a status update that has not been entered yet. Check the portal for a newer status."},
+  {"name": "Same description 3+ times in one office", "expr": "dup_desc_count >= 3", "weight": 20,
+   "verify": "Check whether these are separate phases or sections of one road, or a project listed more than once."},
+  {"name": "One contractor holds half an office's yearly budget", "expr": "contractor_share >= 50 and office_year_n >= 3 and office_year_total_m >= 1000", "weight": 25,
+   "verify": "Check the contractor's SEC General Information Sheet, and whether the contracts were competitively bid."},
+  {"name": "No coordinates on a large project", "expr": "has_coords == 0 and budget_m >= 100", "weight": 15,
+   "verify": "Ask DPWH for the project location through eFOI so it can be inspected."}
+]

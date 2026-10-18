@@ -1,0 +1,9 @@
+{
+  "archive_url": "https://raw.githubusercontent.com/csiiiv/dpwh-transparency-data-api-scraper/main/base-data/base-data-json.tar.xz",
+  "archive_path": "data/raw/base-data-json.tar.xz",
+  "min_office_projects": 20,
+  "entity_high_percentile": 95,
+  "entity_medium_percentile": 80,
+  "item_high": 50,
+  "item_medium": 25
+}
